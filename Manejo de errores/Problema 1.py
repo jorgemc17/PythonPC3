@@ -24,4 +24,39 @@ try:
 except ValueError:
 ...
 except ZeroDivisionError:
-... """
+...
+"""
+
+
+def calcular_porcentaje(fraccion):
+    try:
+        x, y = map(int, fraccion.split('/'))
+
+        if y == 0 :
+            raise Exception(f"Hay un error debido a que el dividendo es {y}")
+        elif x > y:
+            raise Exception(f"Hay un error debido a que la divisio sale {x/y} mayor a 100%, y el combutible no puede exceder su limite")
+
+        porcentaje = (x / y) * 100
+
+        if porcentaje < 1:
+            return 'E'
+        elif porcentaje > 99:
+            return 'F'
+        else:
+            return f'{round(porcentaje)}%'
+
+    except (ValueError, ZeroDivisionError):
+        return "Error: Ingrese una fracción válida (X/Y) donde X e Y sean enteros"
+
+
+while True:
+    fraccion = input("Introduce una fracción, con formato X/Y: ")
+    resultado = calcular_porcentaje(fraccion)
+    print(resultado)
+    if resultado != "Error: Ingrese una fracción válida (X/Y) donde X e Y sean enteros":
+        break
+
+
+
+
